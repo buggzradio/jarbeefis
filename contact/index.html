@@ -96,6 +96,22 @@
             });
         });
     </script>
+
+<script>
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const newTab = window.open('about:blank');
+        const newDoc = newTab.document;
+        fetch(this.href)
+          .then(response => response.text())
+          .then(html => newDoc.write(html))
+          .catch(err => newDoc.write('<h1>Failed to load page</h1>'));
+      });
+    });
+  </script>
+  
+
 </body>
 <footer>
     <!-- Footer Content -->
